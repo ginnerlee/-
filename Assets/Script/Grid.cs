@@ -94,7 +94,7 @@ public class Grid : MonoBehaviour
     {
 
     }
-
+    //無限迴圈 記憶體快爆囉
     public IEnumerator Fill()//填充迴圈，反覆檢查網格內是否還有空位需要填充，若有就執行While迴圈反覆填充
     {
         bool needsRefill = true;
@@ -459,7 +459,7 @@ public class Grid : MonoBehaviour
                             }
                             if (pieces[x,verticalPieces[i].Y].IsColored() && pieces[x, verticalPieces[i].Y].ColorComponent.Color == color)
                             {
-                               verticalPieces.Add(pieces[x, verticalPieces[i].Y]);
+                                horizontalPieces.Add(pieces[x, verticalPieces[i].Y]);
                             }
                             else
                             {
@@ -540,9 +540,22 @@ public class Grid : MonoBehaviour
         {
             if (adjacentX != x && adjacentX >= 0 && adjacentX < xDim)
             {
-                if (pieces[adjacentX, y].Type == PieceType.BUBBLE)
+                if (pieces[adjacentX, y].Type == PieceType.BUBBLE && pieces[adjacentX,y].IsClearble())
                 {
+                    pieces[adjacentX, y].ClearableComponent.Clear();
+                    SpawnNewPiece(adjacentX, y, PieceType.EMPTY);
+                }
+            }
+        }
 
+        for(int adjcentY = y - 1; adjcentY <= y + 1; adjcentY++)
+        {
+            if (adjcentY != y && adjcentY >= 0 && adjcentY < yDim)
+            {
+                if (pieces[x,adjcentY].Type==PieceType.BUBBLE && pieces[x, adjcentY].IsClearble())
+                {
+                    pieces[x, adjcentY].ClearableComponent.Clear();
+                    SpawnNewPiece(x,adjcentY, PieceType.EMPTY);
                 }
             }
         }
