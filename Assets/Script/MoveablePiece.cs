@@ -45,7 +45,7 @@ public class MoveablePiece : MonoBehaviour
 
         for(float t = 0; t <= 1 * time; t += Time.deltaTime)
         {
-            piece.transform.position=Vector3.Lerp(startPos, endPos, t/time);//動畫偵數控制
+            piece.transform.position=Vector3.Lerp(startPos, endPos, t/time);//移動偵數控制
             yield return 0;
         }
 

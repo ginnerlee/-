@@ -38,13 +38,14 @@ public class ClearablePiece : MonoBehaviour
         StartCoroutine(ClearCoroutine());
     }
 
+    //清除時播放動畫
     private IEnumerator ClearCoroutine()
     {
         Animator animator = GetComponent<Animator>();
 
         if (animator)
         {
-            animator.Play(clearAnimation.name);
+            animator.Play(clearAnimation.name);//播放動畫
 
             yield return new WaitForSeconds(clearAnimation.length);
 

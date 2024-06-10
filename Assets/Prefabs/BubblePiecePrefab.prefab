@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 7368925107879034080}
   - component: {fileID: 4460112736387056941}
   - component: {fileID: 6179474962729312473}
+  - component: {fileID: 7146550159767359806}
+  - component: {fileID: 9114884936234993615}
   m_Layer: 0
   m_Name: BubblePiecePrefab
   m_TagString: Untagged
@@ -175,3 +177,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca427bed6983a54b819cb377bcd00e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7146550159767359806
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5287904896077752281}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcd12f41e2e031d49ab0cec8c61cd9a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9114884936234993615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5287904896077752281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6856d68ab68a8264ea674f1c048db1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearAnimation: {fileID: 7400000, guid: 427c198e1a3a28f4d9516813666f859a, type: 2}

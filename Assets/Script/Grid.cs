@@ -95,12 +95,20 @@ public class Grid : MonoBehaviour
 
     }
 
-    public IEnumerator Fill()
+    public IEnumerator Fill()//填充迴圈，反覆檢查網格內是否還有空位需要填充，若有就執行While迴圈反覆填充
     {
-        while (FillStep())
+        bool needsRefill = true;
+
+        while (needsRefill)
         {
-            inverse = !inverse;
             yield return new WaitForSeconds(fillTime);
+
+            while (FillStep())
+            {
+                inverse = !inverse;
+                yield return new WaitForSeconds(fillTime);
+            }
+            needsRefill=ClearAllValidMatches();
         }
     }
 
@@ -122,12 +130,13 @@ public class Grid : MonoBehaviour
 
                 GamePiece piece = pieces[x, y];//先得到當前元素位置
 
-                if (piece.IsMovable())//然後檢查是否可以移動，如果不能移動，就無法往下移動填充，直接忽略
+                if (!piece.IsMovable()) continue;//然後檢查是否可以移動，如果不能移動，就無法往下移動填充，直接忽略
                 {
                     GamePiece pieceBelow = pieces[x, y + 1];
 
                     if (pieceBelow.Type == PieceType.EMPTY)//檢查下面一排是否有空白，如果有，就移動下來
                     {
+                        Destroy(pieceBelow.gameObject);
                         piece.MovableComponent.Move(x, y + 1, fillTime);
                         pieces[x, y + 1] = piece;
                         SpawnNewPiece(x, y, PieceType.EMPTY);
@@ -137,7 +146,7 @@ public class Grid : MonoBehaviour
                     {
                         for (int diag = -1; diag <= 1; diag++)
                         {
-                            if (diag != 0)
+                            if (diag == 0) continue;
                             {
                                 int diagX = x + diag;
 
@@ -146,11 +155,11 @@ public class Grid : MonoBehaviour
                                     diagX = x - diag;
                                 }
 
-                                if (diagX >= 0 && diagX < xDim)
+                                if (diagX < 0 || diagX >= xDim) continue;
                                 {
                                     GamePiece diagonalPiece = pieces[diagX, y + 1];
 
-                                    if (diagonalPiece.Type == PieceType.EMPTY)
+                                    if (diagonalPiece.Type != PieceType.EMPTY) continue;
                                     {
                                         bool hasPieceAbove = true;
 
@@ -169,7 +178,7 @@ public class Grid : MonoBehaviour
                                             }
                                         }
 
-                                        if (!hasPieceAbove)
+                                        if (hasPieceAbove) continue;
                                         {
                                             Destroy(diagonalPiece.gameObject);
                                             piece.MovableComponent.Move(diagX, y + 1, fillTime);
@@ -254,6 +263,8 @@ public class Grid : MonoBehaviour
                 piece2.MovableComponent.Move(piece1X, piece1Y, fillTime);
 
                 ClearAllValidMatches();
+
+                StartCoroutine(Fill());
             }
             else
             {
@@ -516,9 +527,25 @@ public class Grid : MonoBehaviour
             pieces[x,y].ClearableComponent.Clear();
             SpawnNewPiece(x, y, PieceType.EMPTY);
 
+            ClearObstacles(x, y);
+
             return true;
         }
         return false;
+    }
+
+    public void ClearObstacles(int x,int y)//清除泡泡
+    {
+        for(int adjacentX = x - 1; adjacentX <= x + 1; adjacentX++)
+        {
+            if (adjacentX != x && adjacentX >= 0 && adjacentX < xDim)
+            {
+                if (pieces[adjacentX, y].Type == PieceType.BUBBLE)
+                {
+
+                }
+            }
+        }
     }
    
 
