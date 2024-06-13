@@ -32,7 +32,7 @@ public class ClearablePiece : MonoBehaviour
         
     }
 
-    public void Clear()
+    public virtual void Clear()//**在void前面加入virtual，表示這段程式碼允許在其他派生類別中被覆寫，好處是可以讓程式有更多擴展性和可維護性
     {
         isBeingCleared=true;
         StartCoroutine(ClearCoroutine());

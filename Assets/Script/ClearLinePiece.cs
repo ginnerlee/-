@@ -18,4 +18,18 @@ public class ClearLinePiece : ClearablePiece//把清除整條線的腳本作為Clearablepie
     {
         
     }
+
+    public override void Clear()
+    {
+        base.Clear();//先執行原本的Clear的函式，如果不寫base的話就會直接覆寫
+
+        if (isRow )//Clear row
+        {
+            piece.GridRef.ClearRow(piece.Y);
+        }
+        else//Clear column
+        {
+            piece.GridRef.ClearColumn(piece.X);
+        }
+    }
 }

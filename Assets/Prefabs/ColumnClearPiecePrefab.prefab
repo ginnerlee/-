@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 1317741839538022275}
   - component: {fileID: 22017581732448359}
   - component: {fileID: 7428582235831188017}
-  - component: {fileID: 1623546297204782726}
   - component: {fileID: 1779369072121458480}
+  - component: {fileID: -379438057025006847}
   m_Layer: 0
   m_Name: ColumnClearPiecePrefab
   m_TagString: Untagged
@@ -216,19 +216,6 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: a2af2b453925f814f8cb44271e2dd116, type: 3}
   - color: 5
     sprite: {fileID: 21300000, guid: 9cae86fff3ec91049b3248769d723885, type: 3}
---- !u!114 &1623546297204782726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8108282519614871544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6856d68ab68a8264ea674f1c048db1e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clearAnimation: {fileID: 7400000, guid: abb144c4b93bbf74390110acfd7d4c97, type: 2}
 --- !u!95 &1779369072121458480
 Animator:
   serializedVersion: 5
@@ -250,3 +237,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-379438057025006847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108282519614871544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70efb295bead2ab409e8ea5554e2cdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearAnimation: {fileID: 7400000, guid: abb144c4b93bbf74390110acfd7d4c97, type: 2}
+  isRow: 0
