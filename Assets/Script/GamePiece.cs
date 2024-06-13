@@ -31,16 +31,16 @@ public class GamePiece : MonoBehaviour
         }
     }
 
-    private Grid.PieceType type_;//資料封裝，限制更改內部數值
+    private GameGrid.PieceType type_;//資料封裝，限制更改內部數值
 
-    public Grid.PieceType Type//property 常為公用，並控制著一個私用的欄位。
+    public GameGrid.PieceType Type//property 常為公用，並控制著一個私用的欄位。
     {
         get { return type_; }
     }
 
-    private Grid grid_;
+    private GameGrid grid_;
 
-    public Grid GridRef
+    public GameGrid GridRef
     {
         get { return grid_; }
     }
@@ -86,7 +86,7 @@ public class GamePiece : MonoBehaviour
     }
 
     //Piece變量初始化
-    public void Init(int _x,int _y, Grid _grid, Grid.PieceType _type) 
+    public void Init(int _x,int _y, GameGrid _grid, GameGrid.PieceType _type) 
     {
         x_ = _x;
         y_ = _y;

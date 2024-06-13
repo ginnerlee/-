@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Grid : MonoBehaviour
+public class GameGrid : MonoBehaviour
 {
     public enum PieceType
     {
         EMPTY,
         NORMAL,
         BUBBLE,
+        ROW_CLEAR,
+        COLUMN_CLEAR,
         COUNT,
     }
 
@@ -264,6 +266,19 @@ public class Grid : MonoBehaviour
 
                 ClearAllValidMatches();
 
+                if(piece1.Type == PieceType.ROW_CLEAR||piece1.Type== PieceType.COLUMN_CLEAR)
+                {
+                    ClearPiece(piece1.X, piece1.Y);
+                }
+
+                if (piece2.Type == PieceType.ROW_CLEAR || piece2.Type == PieceType.COLUMN_CLEAR)
+                {
+                    ClearPiece(piece2.X, piece2.Y);
+                }
+
+                pressedPiece = null;
+                enteredPiece = null;
+
                 StartCoroutine(Fill());
             }
             else
@@ -510,11 +525,50 @@ public class Grid : MonoBehaviour
 
                     if (match != null)
                     {
+                        //判斷特殊元素，4個以上的相同元素被消除
+                        PieceType speacialPieceType = PieceType.COUNT;
+                        GamePiece randomPiece = match[Random.Range(0, match.Count)];
+                        int specialPieceX=randomPiece.X;
+                        int specialPieceY=randomPiece.Y;
+
+                        if (match.Count == 4)
+                        {
+                            if(pressedPiece==null||enteredPiece==null)//如果不是因為玩家操作滑鼠而消除特殊元素，那就隨機播放橫豎列Clear
+                            {
+                                speacialPieceType=(PieceType)Random.Range((int)PieceType.ROW_CLEAR,(int)PieceType.COLUMN_CLEAR);
+                            }
+                            else if (pressedPiece.Y == enteredPiece.Y)
+                            {
+                                speacialPieceType=PieceType.ROW_CLEAR;
+                            }
+                            else//如果是同一列，那就是整列消除
+                            {
+                                speacialPieceType = PieceType.COLUMN_CLEAR;
+                            }
+                        }
+
                         for(int i=0; i < match.Count; i++)
                         {
                             if (ClearPiece(match[i].X, match[i].Y))
                             {
                                 needsRefill = true;
+
+                                if (match[i] == pressedPiece || match[i] == enteredPiece)
+                                {
+                                    specialPieceX = match[i].X;
+                                    specialPieceY = match[i].Y;
+                                }
+                            }
+                        }
+
+                        if (speacialPieceType != PieceType.COUNT)
+                        {
+                            Destroy(pieces[specialPieceX, specialPieceY]);
+                            GamePiece newPiece = SpawnNewPiece(specialPieceX, specialPieceY, speacialPieceType);
+
+                            if ((speacialPieceType == PieceType.ROW_CLEAR || speacialPieceType == PieceType.COLUMN_CLEAR) && newPiece.IsColored() && match[0].IsColored())
+                            {
+                                newPiece.ColorComponent.SetColor(match[0].ColorComponent.Color);
                             }
                         }
                     }
