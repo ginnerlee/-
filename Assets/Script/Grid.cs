@@ -260,7 +260,7 @@ public class Grid : MonoBehaviour
                 int piece1Y = piece1.Y;
 
                 piece1.MovableComponent.Move(piece2.X, piece2.Y, fillTime);
-                piece2.MovableComponent.Move(piece1X, piece1Y, fillTime);
+                piece2.MovableComponent.Move(piece1X, piece1Y, fillTime);//°Ý°Ý
 
                 ClearAllValidMatches();
 
@@ -435,6 +435,11 @@ public class Grid : MonoBehaviour
             }
 
             //Traverse horizontally if we found a match (for L and T shape)
+
+            if (verticalPieces.Count >= 3)
+            {
+                matchingPieces.AddRange(verticalPieces);
+            }
             if (verticalPieces.Count >= 3)
             {
                 for (int i = 0; i < verticalPieces.Count; i++)
