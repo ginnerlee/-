@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8107934835826954488}
   - component: {fileID: 646883187556809617}
   - component: {fileID: 3781940545293585476}
-  - component: {fileID: 3673509559286250182}
+  - component: {fileID: 3522708495439906348}
   m_Layer: 0
   m_Name: RowClearPiecePrefab
   m_TagString: Untagged
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearAnimation: {fileID: 7400000, guid: abb144c4b93bbf74390110acfd7d4c97, type: 2}
---- !u!95 &3673509559286250182
+--- !u!95 &3522708495439906348
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ Animator:
   m_GameObject: {fileID: 7161100411839547637}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9c1051adada8b5543aad7cdd8ad9a29b, type: 2}
+  m_Controller: {fileID: 9100000, guid: b045ba14b3e661841b118ec93442b8cc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

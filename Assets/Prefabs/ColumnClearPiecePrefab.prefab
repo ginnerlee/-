@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 22017581732448359}
   - component: {fileID: 7428582235831188017}
   - component: {fileID: 1623546297204782726}
-  - component: {fileID: 4289243617123106347}
+  - component: {fileID: 1779369072121458480}
   m_Layer: 0
   m_Name: ColumnClearPiecePrefab
   m_TagString: Untagged
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearAnimation: {fileID: 7400000, guid: abb144c4b93bbf74390110acfd7d4c97, type: 2}
---- !u!95 &4289243617123106347
+--- !u!95 &1779369072121458480
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ Animator:
   m_GameObject: {fileID: 8108282519614871544}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cfb174ab2e4dc5e4d970bb2bb33f8f23, type: 2}
+  m_Controller: {fileID: 9100000, guid: fdea18213a47ecf4c920b3fc9e71aa63, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
